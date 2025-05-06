@@ -1,0 +1,176 @@
+html, body{
+    padding:0;
+    margin:0;
+}
+
+nav {
+    overflow:hidden;
+    margin:0;
+    padding: 20px;
+    background-color:#c90000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+main {
+    padding-top:100vh;
+    width:100%;
+    font-family:"Roboto";
+}
+
+hr {
+    border-top: 8px solid #c90000;
+    border-radius: 5px;
+    clear: both;
+    display: block;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+li::marker {
+    color: #c90000;
+}
+
+footer {
+    padding:30px;
+    font-family: "Product Sans";
+    font-size: 24px;
+    color: white;
+    background-color: #c90000;
+    margin:0;
+    box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 20px rgba(0, 0, 0, 0.19);
+}
+
+.button {
+    font-family: "Product Sans";
+    float:right;
+    background-color:#c90000;
+    box-sizing: border-box;
+    border: 2px inset transparent;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration:none;
+    font-size:16px;
+    margin-top:-15px;
+    margin-right:30px;
+    cursor: pointer;
+    border-radius:4px;
+    transition:background-color 0.2s;
+}
+
+.button:hover{
+    background-color:white;
+    color:#c90000;
+}
+
+.button:active{
+    background-color:gray;
+    color:white;
+    border-color:white;
+}
+
+.homeHeader{
+    width:2100px;
+    height:100vh;
+    position:fixed;
+    text-align:center;
+    z-index:-1;
+}
+
+.content{
+    padding:20px;
+    padding-top: 30px;
+    background-color:white;
+    overflow:hidden
+}
+
+.headers {
+    margin-left: 25px;
+    background: rgba(40, 40, 40, 0.1); 
+    width: 47%;
+    padding: 35px;
+    border-radius: 16px;
+    display: flow-root;
+}
+
+.overHeader {
+    overflow: hidden;
+}
+
+.headingLink {
+    font-size: 36px;
+    color: #c90000;
+    text-decoration: none;
+    transition:0.1s;
+}
+
+.headingLink:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.textContent {
+    width:95%;
+    padding: 20px;
+    background:rgba(40, 40, 40, 0.1);
+    border-radius: 8px;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+#title {
+    margin-left:15px;
+    color:white;
+    font-family:"Product Sans";
+}
+
+#homeHeaderText {
+    background-color: #c90000;
+    border-radius: 20px;
+    padding: 5%;
+    font-family: "Product Sans";
+    font-size:76px;
+    color:white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#headerBanner {
+    width: 100%;
+    height:auto;
+}
+
+#contentHeader {
+    color: #c90000;
+    font-size: 100px;
+    font-family: "Product Sans";
+    display:flow-root;
+    margin-left: 35px;
+}
+
+#subHeading {
+    font-size: 36px;
+    font-weight: bold;
+    display:flow-root;
+}
+
+#contentImage {
+    width: 40%;
+    height: auto;
+    border: 16px inset;
+    border-color: #c90000;
+    border-radius: 8px;
+}
+
+#text {
+    font-size: 30px;
+    font-family: "Roboto";
+}
