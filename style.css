@@ -131,11 +131,12 @@ footer {
 }
 
 #homeHeaderText {
+    text-align: center;
     background-color: #c90000;
     border-radius: 20px;
     padding: 5%;
     font-family: "Product Sans";
-    font-size:72px;
+    font-size:76px;
     color:white;
     position: absolute;
     top: 50%;
