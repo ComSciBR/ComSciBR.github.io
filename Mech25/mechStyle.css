@@ -1,0 +1,247 @@
+@font-face {
+  font-family: Sheeping Cats; /* set name */
+  src: url("C:/Users/chris/Documents/School/Portfolio/fonts/sheeping-cats-font/SheepingCats-929Z.ttf"), format(truetype); /* url of the font */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body{
+    padding:0;
+    margin:0;
+    overflow-x: hidden;
+}
+
+div {
+    padding:0;
+    margin:0;
+}
+
+nav {
+    padding: 2%;
+    background-color:#08063b;
+    border: 0.25vw solid;
+    position: fixed;
+    top: 0;
+    left:0;
+    right:0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    isolation: isolate;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(-100%);  /* Start hidden */
+}
+
+/* This class makes navbar visible */
+.nav-visible {
+    transform: translateY(0) !important;
+}
+
+/* This class hides navbar on scroll down */
+.nav-hidden {
+    transform: translateY(-100%) !important;
+}
+
+button {
+    margin: 0;
+}
+
+main {
+    margin-top: 100vh;
+    width:100%;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+
+footer {
+    padding: 2%;
+    background-color:#08063b;
+    border: 0.25vw solid;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 20px rgba(0, 0, 0, 0.19);
+}
+
+.buttonGroup {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1vw; 
+}
+
+.buttonGroup button {
+    display: inline-flex;
+    font-family: "Sheeping Cats";
+    background-color:#08063b;
+    border: 0.15vw solid transparent;
+    color:white;
+    -webkit-text-stroke: 0.5px black;
+    padding: 1.5% 2%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1vw;
+    cursor: pointer;
+    line-height: normal; 
+    vertical-align: middle; 
+    white-space: nowrap;
+    transition:background-color 0.2s;
+}
+
+.buttonGroup button:hover{
+    background-color:white;
+    -webkit-text-stroke: 0px black;
+    color:#040151;
+    border-color:black;
+}
+
+.buttonGroup button:active{
+    background-color:#040151;
+    color:white;
+    border-color:white;
+}
+
+.mechBannerDiv {
+    padding: 0%;
+    margin: 0%;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.fade-element {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+.fade-element.visible {
+    opacity: 1;
+}
+
+.iframeDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55vw;
+    height: 80vh;
+}
+
+.iframeDiv iframe {
+    width: 100%;
+    height: 100%;
+    border: 0.25vw solid black;
+}
+
+#mechTitle {
+    font-family: "Sheeping Cats";
+    font-size: 1.75vw;
+    color: white;
+    -webkit-text-stroke: 0.5px black;
+    margin-right: auto; 
+    white-space: nowrap;  /* Keep title on one line */
+}
+
+#mechBanner {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+#mechHeaderText {
+    animation: disappearAndSlideIn 1s ease-out;
+    font-family: "Sheeping Cats";
+    font-size: 4.7vw;
+    -webkit-text-stroke: 0.5px black;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#contentDiv {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+#contentTitle {
+    font-family: "Sheeping Cats";
+    font-size: 3vw;
+    -webkit-text-stroke: 0.5px black;
+    color:white;
+    background-color:#08063b;
+    border: 0.25vw solid black;
+    position: absolute;
+    padding: 1.5% 2%;
+}
+
+#contentImage {
+    position: absolute;
+    height: auto;
+    border: 0.5vw solid black;
+}
+
+#contentText {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.5vw;
+    background-color:white;
+    color:black;
+    border: 0.25vw solid;
+    position: absolute;
+    padding: 1.5% 2%;
+    width: 55vw;
+}
+
+#pageLink {
+    font-family: "Sheeping Cats";
+    font-size: 3vw;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #08063b;
+    -webkit-text-stroke: 0.5px black;
+    transition: 0.2s ease;
+}
+
+#pageLink:hover {
+    color: #040151;
+    -webkit-text-stroke: 0px black;
+}
+
+#pageLink:active {
+    color: #2720a4;
+    -webkit-text-stroke: 0px black;
+}
+
+
+@keyframes disappearAndSlideIn {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    20% {
+        opacity: 0;
+        transform: translate(-50%, -50%);
+    }
+    50% {
+        opacity: 0;
+        transform: translate(calc(-50% - 200px), -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
