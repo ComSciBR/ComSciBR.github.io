@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mechatronics 25</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="mechStyle.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <div>
+                <button id="homeButton">Home</button>
+            </div>
+            <div>
+                <div id="mechTitle">Rover Recovery Mission
+                    <div class="buttonGroup">
+                        <button id="disasterButton">Disaster Relief</button>
+                        <button id="solderButton">Electro-Assembly</button>               
+                        <button id="monitorButton">Monitoring Station</button> 
+                        <button id="basicButton">Remote Control Car</button>
+                        <button id="roverButton">Rover Recovery Mission</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="mechBannerDiv">
+            <img id="mechBanner" src="mechImages/mechatronic-image.png">
+        </div>
+        <div class="fade-element">
+            <h1 id="mechHeaderText" style="font-size:3.3vw">Rover Recovery Mission</h1>
+        </div>
+        <main>
+            <div class="content">
+                <div class="fade-element" id="contentDiv">
+                    <p id="contentText" style="font-size: 2.5vw; top: 11vw; left: 6vw;">
+                        Our task for our rover recovery mission is to navigate through a wildfire zone. Our challenges include putting out fires 
+                        that are simulated through five separate candles that we need to put out, along with saving five animals from the disaster
+                        that is simulated through carrying plastic toy animals from the field into a designated "safe zone".
+                    </p>
+                    <img src="mechImages/wfrecovery.jpg" id="contentImage" style="top: 17.75vw; right: 3vw; width: 37vw;">
+                    <h2 id="contentTitle" style="top: 8vw; left: 3vw;">Our Rover Recovery Task</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/roversketch.png" id="contentImage" style="width: 75%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 5vw; left: 3vw;">Robot Sketch</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/krishayflowchart.png" id="contentImage" style="width: 33%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 3vw; left: 5vw;">Flowchart</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/1.png" id="contentImage" style="width: 43vw; top: 15vw; left: 5vw;">
+                    <img src="mechImages/2.png" id="contentImage" style="width: 43vw; top: 15vw; right: 5vw;">
+                    <h2 id="contentTitle" style="top: 9vw; left: 3vw;">Engineering Schematics</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/finalrover.png" id="contentImage" style="width: 29%; top: 53%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 3vw; left: 5vw;">Final Rover Image</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <div id="contentText" style="font-size: 1.13vw; top: 9.75vw; left: 6vw; width: 88vw; overflow: auto;">
+                        <strong>Scoop:</strong>
+                        <div style="padding-left: 5%;">
+                            <li>We incorporated a scooper/shovel as our main interactive piece with the game objects</li>
+                            <li>We can mask the candles with sand that we pick up</li>
+                            <li>We're able to pick up and displace wild life from the danger locations</li>
+                            <li>The unique part of the design is our grooves on our scoop to allow for picking up/loading sand once or twice 
+                                and then using multiple steps to unload on the different fires controlled by the grooves</li>
+                            <li>We thought of using a fan to blow out the fires and push the animals but the fan later became an object not 
+                                available for use. We also thought of a "sweeper" to mask the fire and we would use it to push the animals as well</li>
+                        </div>
+                        <br>
+                        <strong>Arm:</strong>
+                        <div style="padding-left: 5%;">
+                            <li>We used the constant pitch arm and pitch plate from the tbb website to adequately control our scooper with two servos</li>
+                        </div>
+                        <br>
+                        <strong>Two Rear Wheels:</strong>
+                        <div style="padding-left: 5%;">
+                            <li>We used the 2 same wheels except we added little pits of plastic to create a greater amplitude in certain areas 
+                                allowing us to pierce throguht the sand and make contact with the field floor, thus generating traction</li>
+                            <li>We initially wanted to add 2 omni-wheels to the front of the robot, but opted not to do this as they would 
+                                likely get jammed quickly, preventing rotation of the robot​</li>
+                            <li>We also considered making a tank tread design, but found this would be difficult to mount, as the sides of 
+                                the robot don’t have many mounting points​</li>
+                            <li>Ultimately our only change to the robot drive system was to add a small pin to the front of the robot, 
+                                slightly elevating it and allowing easier movement in sand</li>
+                        </div>
+                        <br>
+                        <strong>TBB Controller + Driver Assistance</strong>
+                        <div style="padding-left: 5%;">
+                            <li>We are using a teleop control system for this challenge to eliminate inaccuracies of autonomous in sand and to 
+                                avoid the hazard of burning the robot</li>
+                            <li>We also incorporated a flame sensor and buzzer to assist the driver when they're aligned with the shovel, 
+                                allowing for faster extinguishing of the fires​</li>
+                        </div>
+                    </div>
+                    <h2 id="contentTitle" style="top: 3.75vw; left: 3vw;">Key Design Features</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <div id="contentText" style="font-size: 2.5vw; top: 8vw; left: 6vw; width: 88vw; overflow: auto;">
+                        <ol style="padding-left: 5%;">
+                            <li>Standard Wheels - Basic Movement and Slow - Wheels slipped on turns and smooth angles</li>
+                            <li>Servo horns attached to the wheels (with rubber bands) - added grip and traction to the wheels - much better 
+                                grip and reduced slipping on the sand​</li>
+                        </ol>
+                        Within one of our tests, we conducted small iterative drivetrain tests to improve the wheel traction. This is because 
+                        the initial design used standard wheels which caused slipping during turns. We added servo horns in order to increase 
+                        the grip and this final modification significantly improved our traction which resulted in more accurate navigation.
+                    </div>
+                    <h2 id="contentTitle" style="top: 3.75vw; left: 3vw;">Testing</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 54%; left: 50%; transform: translate(-50%, -50%); width: 53vw; max-height: 82%;"> 
+    <strong>TBB Joystick Code</strong>
+    /**
+    * File: tBB_Joystick_Base_Code.ino
+    * Author: Matthew Allwright, theBasicBot
+    * Copyright: 2023
+    *
+    * Description:
+    * This file serves as an example for robots controlled by theBasicBot's ESP32-based controller.
+    */
+
+    /* Includes ------------------------------------------------------------------------------------- */
+    #include "controller_handling.hpp" //include the controller code
+    #include "motor_control.hpp" //include the motor code
+    #include "servo_dyck.hpp"
+    #include "sensors.hpp"
+
+    /* Variables ------------------------------------------------------------------------------------ */
+
+    static Controller controller = {};
+
+    /* Setup and Loop ------------------------------------------------------------------------------- */
+
+    void setup() {
+        // Setup serial
+        Serial.begin(9600);
+        Serial.print("tBB Joystick Base Code");
+        Serial.print(" | VER 2.3");
+        Serial.println(" | Mar 15, 2024");
+        // NOTE: This serial port is shared between both the BLE adapter (e.g., HM-10 module), and the
+        // Serial Monitor that is available when you connect the Arduino to a computer. This means if you
+        // print anything to the serial, it will go to BOTH the computer and the controller. This should
+        // be fine, because the controller doesn't currently parse any input over BLE.
+
+        setupMotors();
+        setupServos();
+        setupSensors();
+    }
+
+    void loop() { //loop function
+        /* ---------------------------------- */
+        /*         Update Controller          */
+        /* ---------------------------------- */
+
+        controller.update();
+
+        /* ---------------------------------- */
+        /*           Control Robot            */
+        /* ---------------------------------- */
+
+        // any functions that will be called directly by a button press must be included here
+        controlServo1(controller); //arm servo movement function
+        controlServo2(controller); //shovel servo movement function
+        controlMotors(controller); //wheel motor movement function
+        sensorLoop(); //sensor loop function
+        int forward = -1 * (controller.joyRightX); // forward/back
+        int turn    = -1 * (controller.joyLeftY); // turning
+        int leftPower  = forward + turn; //update left motor power
+        int rightPower = forward - turn; //update right motor power
+        setLeftMotor(leftPower); //give new power value to left motor
+        setRightMotor(rightPower); //give new power value to right motor
+    }
+                    </pre>
+                    <h2 id="contentTitle" style="top: 3vw; left: 3vw;">Commented Code</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 53vw; max-height: 82%;"> 
+    <strong>Controller_handling.hpp</strong>
+    #pragma once
+
+    /**
+    * File: controller_handling.hpp
+    * Author: Matthew Allwright, theBasicBot
+    * Copyright: 2023
+    *
+    * Description:
+    * This file contains the class definition of a controller object, and defines the methods to handle
+    * data received from the controller over BLE.
+    */
+
+    /* Config --------------------------------------------------------------------------------------- */
+
+    /**
+    * @brief Uncomment this macro to enable debugging features. These can help you figure out if
+    * anything is going wrong, but may reduce the performance of the program.
+    */
+    // #define DEBUG
+
+    /* Types ---------------------------------------------------------------------------------------- */
+
+    class Controller {
+        protected:
+            static constexpr size_t kMessageSize_B = 7;
+
+            uint8_t rxBuffer[kMessageSize_B] = {};
+            size_t numRxBytes = 0;
+
+            static constexpr uint8_t kJoystickMinimum = 0;
+            static constexpr uint8_t kJoystickMiddle = 127;
+            static constexpr uint8_t kJoystickMaximum = 254;
+            // Increase this slightly if the robot is driving (or its motors are whining) without moving the
+            // joystick
+            static constexpr uint8_t kJoystickDeadzone = 25;
+
+            //change raw joystick input into a usable value for movement
+            int8_t parseJoystickValue(const uint8_t aAxis) {
+                //define value for negative joystick movement
+                if (aAxis <= kJoystickMiddle - kJoystickDeadzone) {
+                    return map(aAxis, kJoystickMinimum, kJoystickMiddle + kJoystickDeadzone, -100, 0);
+                    //define value for positive joystick movement
+                } else if (aAxis >= kJoystickMiddle + kJoystickDeadzone) {
+                    return map(aAxis, kJoystickMiddle + kJoystickDeadzone, kJoystickMaximum, 0, 100);
+                    //return if no joystick value (no input)
+                } else {
+                    return 0;
+                }
+            }
+
+        public:
+        /* ---------------------------------- */
+        /*    Basic + Advanced Controller     */
+        /* ---------------------------------- */
+
+        // Right button bank
+        boolean btnRightUp;
+        boolean btnRightRight;
+        boolean btnRightDown;
+        boolean btnRightLeft;
+
+        // Middle button bank
+        boolean btnMidLeft;
+        boolean btnMidRight;
+
+        // Left joystick
+        int8_t joyLeftX;  // -100 to +100 (left to right)
+        int8_t joyLeftY;  // -100 to +100 (down to up)
+        boolean btnLeftJoy;
+
+        /* ---------------------------------- */
+        /*      Advanced Controller Only      */
+        /* ---------------------------------- */
+
+        // Left button bank
+        boolean btnLeftUp;
+        boolean btnLeftRight;
+        boolean btnLeftDown;
+        boolean btnLeftLeft;
+
+        // Shoulder buttons
+        boolean btnLeftShoulder;
+        boolean btnRightShoulder;
+
+        // Right joystick
+        int8_t joyRightX;  // -100 to +100 (left to right)
+        int8_t joyRightY;  // -100 to +100 (down to up)
+        boolean btnRightJoy;
+
+        void update() {
+            // Collect individual bytes over BLE until a full message is received
+            if (numRxBytes != kMessageSize_B) {
+                while (Serial.available() > 0) {
+                    uint8_t rxByte = Serial.read();
+
+                    if (numRxBytes == 0 && rxByte != 0xFF) {
+                        // Ignore input until we see the start of a message
+                    } else if (numRxBytes < kMessageSize_B) {
+                        // Append the byte to the message buffer
+                        rxBuffer[numRxBytes++] = rxByte;
+                    } else {
+                        // We've somehow received too many bytes between start bytes.
+                        // Clear the buffer and try again.
+                        memset(rxBuffer, 0, sizeof(rxBuffer));
+                        numRxBytes = 0;
+                    }
+                }
+                delay(8);
+            } else {
+        #ifdef DEBUG
+            // Print received message to the console
+            char s[48] = {0};
+            snprintf(s, 47, "RX: [0x%02x][0x%02x][0x%02x][0x%02x][0x%02x][0x%02x][0x%02x]\n", rxBuffer[0],
+                    rxBuffer[1], rxBuffer[2], rxBuffer[3], rxBuffer[4], rxBuffer[5], rxBuffer[6]);
+            Serial.println(s);
+        #endif
+
+            // Update the member variables to reflect the current state of the controller
+            btnLeftShoulder = (rxBuffer[1] & 0x01);
+            btnRightShoulder = (rxBuffer[1] & 0x02);
+            btnMidLeft = (rxBuffer[1] & 0x04);
+            btnMidRight = (rxBuffer[1] & 0x08);
+            btnRightJoy = (rxBuffer[1] & 0x10);
+            btnLeftJoy = (rxBuffer[1] & 0x20);
+
+            btnLeftUp = (rxBuffer[2] & 0x01);
+            btnLeftRight = (rxBuffer[2] & 0x02);
+            btnLeftDown = (rxBuffer[2] & 0x04);
+            btnLeftLeft = (rxBuffer[2] & 0x08);
+            btnRightUp = (rxBuffer[2] & 0x10);
+            btnRightRight = (rxBuffer[2] & 0x20);
+            btnRightDown = (rxBuffer[2] & 0x40);
+            btnRightLeft = (rxBuffer[2] & 0x80);
+
+            joyLeftX = parseJoystickValue(rxBuffer[3]);
+            joyLeftY = parseJoystickValue(rxBuffer[4]);
+            joyRightX = parseJoystickValue(rxBuffer[5]);
+            joyRightY = parseJoystickValue(rxBuffer[6]);
+
+            // Clear the message buffer to make room for the next message
+            memset(rxBuffer, 0, sizeof(rxBuffer));
+            numRxBytes = 0;
+            }
+        }
+    };
+                    </pre>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 53vw; max-height: 82%;"> 
+    <strong>motor_control.hpp</strong>
+    #pragma once
+    /**llggggggggggggggggggg
+    * File: motor_control.hpp
+    * Author: Matthew Allwright, theBasicBot
+    * Copyright: 2023
+    *
+    * Description:
+    * This file contains constants and functions for controlling motors on the robot.
+    */
+
+    /* Includes ------------------------------------------------------------------------------------- */
+
+    #include "controller_handling.hpp"
+
+    /* Constants ------------------------------------------------------------------------------------ */
+
+    // Motor control pins connected to H-Bridge motor driver
+    static constexpr int kLeftWheel_Backwards = 9;
+    static constexpr int kLeftWheel_Forwards = 5;
+    static constexpr int kRightWheel_Forwards = 6;
+    static constexpr int kRightWheel_Backwards = 11;
+
+    // Adjust either of these down (NOT ABOVE 255) if one motor is faster than the other
+    static constexpr unsigned int kMotorMaximum_Left = 255;
+    static constexpr unsigned int kMotorMaximum_Right = 255;
+
+    // Motor control configuration
+    static constexpr int kMotorMaxPercent = 100;
+
+    /* Variables ------------------------------------------------------------------------------------ */
+
+    static double motorLimitFactor = kMotorMaxPercent / 100.0f;
+
+    /* Functions ------------------------------------------------------------------------------------ */
+
+    void setupMotors() { //wheel setup function
+        pinMode(kRightWheel_Backwards, OUTPUT);
+        pinMode(kRightWheel_Forwards, OUTPUT);
+        pinMode(kLeftWheel_Forwards, OUTPUT);
+        pinMode(kLeftWheel_Backwards, OUTPUT);
+    }
+
+    //sets the limit for the maximum amount of power the motor can have
+    void setMotorLimit(const unsigned int aMax) {
+        if (aMax <= kMotorMaxPercent) {
+            motorLimitFactor = aMax / 100.0f;
+        } else {
+            motorLimitFactor = kMotorMaxPercent / 100.0f;
+        }
+    }
+
+    //moves the left motor
+    void setLeftMotor(const int aValue) {
+        //set new motor value
+        int motorVal = max(min(aValue, kMotorMaxPercent), -kMotorMaxPercent);
+
+        //check for value greater than 0 and move forward when detected
+        if (motorVal > 0) {
+            analogWrite(kLeftWheel_Forwards,
+                        map(motorVal, 0, kMotorMaxPercent, 0, kMotorMaximum_Left * motorLimitFactor));
+            analogWrite(kLeftWheel_Backwards, 0);
+        //check for value less than 0 and move backwards when detected
+        } else if (motorVal < 0) {
+            analogWrite(kLeftWheel_Forwards, 0);
+            analogWrite(kLeftWheel_Backwards,
+                        map(motorVal, 0, -kMotorMaxPercent, 0, kMotorMaximum_Left * motorLimitFactor));
+        //stop moving if no value is detected
+        } else {
+            analogWrite(kLeftWheel_Forwards, 0);
+            analogWrite(kLeftWheel_Backwards, 0);
+        }
+    }
+
+    //moves the right motor
+    void setRightMotor(const int aValue) {
+        //set new motor value
+        int motorVal = max(min(aValue, kMotorMaxPercent), -kMotorMaxPercent);
+
+        //check for value greater than 0 and move forward when detected
+        if (motorVal > 0) {
+            analogWrite(kRightWheel_Forwards,
+                        map(motorVal, 0, kMotorMaxPercent, 0, kMotorMaximum_Right * motorLimitFactor));
+            analogWrite(kRightWheel_Backwards, 0);
+        //check for value less than 0 and move backwards when detected
+        } else if (motorVal < 0) {
+            analogWrite(kRightWheel_Forwards, 0);
+            analogWrite(kRightWheel_Backwards,
+                        map(motorVal, 0, -kMotorMaxPercent, 0, kMotorMaximum_Right * motorLimitFactor));
+        //stop moving if no value is detected
+        } else {
+            analogWrite(kRightWheel_Forwards, 0);
+            analogWrite(kRightWheel_Backwards, 0);
+        }
+    }
+                    </pre>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 53vw; max-height: 82%;"> 
+    <strong>sensors.hpp</strong>
+    #pragma once
+    /**
+    * File: sensors.hpp
+    * Author: Matthew Allwright, theBasicBot
+    * Copyright: 2023
+    *
+    * Description:
+    * This file is used to set up and control the integration of sensors with tBB.
+    */
+
+    /* Includes ------------------------------------------------------------------------------------- */
+
+    #include "controller_handling.hpp" //include controller functions
+
+    /* Variables ------------------------------------------------------------------------------------ */
+
+    const int flamePin = 4; // the number of the flame pin
+    const int buzzer = 8;//set digital IO pin of the buzzer
+    int State = 0; // variable for reading status
+
+    /* Functions ------------------------------------------------------------------------------------ */
+
+    void setupSensors() { //setup sensors
+        pinMode(flamePin, INPUT); //initialize the pushbutton pin as an input:
+        pinMode(buzzer, OUTPUT);// set digital IO pin pattern, OUTPUT to be output
+    }
+
+    void sensorLoop(){ //sensor loop function
+        state = digitalRead(flamePin); //Read the state of the value:
+        if (state == LOW) { //Statement that checks if there is fire
+            tone(buzzer, 1000); //activate buzzer
+        }
+        else { //run if no fire
+            noTone(buzzer); //deactivate buzzer
+        }
+    }
+                    </pre>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62vw; max-height: 82%;"> 
+    <strong>servo.hpp</strong>
+    /* Includes ------------------------------------------------------------------------------------- */
+
+    #include <Servo.h> //include servo library
+
+    #include "controller_handling.hpp" //include controller functions
+
+    /* Constants ------------------------------------------------------------------------------------ */
+
+    /* ---------------------------------- */
+    /* Servo 1 Config */
+    /* ---------------------------------- */
+
+    static Servo servo1; //define arm servo
+    static constexpr int kPinServo1 = 2; //arm servo pin
+
+    static uint8_t servo1Pos = 90; //servo initial position
+    static constexpr uint8_t kServo1MinDeg = 1; // Minimum 1
+    static constexpr uint8_t kServo1MaxDeg = 150; // Maximum 180
+    static constexpr uint16_t kServo1Speed = 2; //servo speed
+
+    /* ---------------------------------- */
+    /* Servo 2 Config */
+    /* ---------------------------------- */
+
+    static Servo servo2; //define shovel servo
+    static constexpr int kPinServo2 = 7; //shovel servo pin
+
+    static uint8_t servo2Pos = 120; //servo 2 initial position
+    static constexpr uint8_t kServo2MinDeg = 90; // Minimum 0
+    static constexpr uint8_t kServo2MaxDeg = 130; // Maximum 180
+    static constexpr uint16_t kServo2Speed = 20; //servo 2 speed
+
+    /* Functions ------------------------------------------------------------------------------------ */
+
+    void setupServos() { //servo setup
+        servo1.attach(kPinServo1); //define servo 1 pin
+        Serial.print(servo1Pos); //define servo 1 initial position
+
+        servo2.attach(kPinServo2); //define servo 2 pin
+        Serial.print(servo2Pos); //define servo 2 initial position
+    }
+
+    void controlServo1(const Controller& aController) { //servo 1 movement function
+        if (aController.btnRightUp && servo1Pos < kServo1MaxDeg) { //move servo if right up button pressed
+            servo1Pos += min(kServo1Speed, kServo1MaxDeg - servo1Pos); //update servo 1 position
+        } else if (aController.btnRightDown && servo1Pos > kServo1MinDeg) { //move servo the other way if right down button pressed
+            servo1Pos -= min(kServo1Speed, servo1Pos - kServo1MinDeg); //update servo 1 position
+        }
+        servo1.write(servo1Pos); //move servo 1
+    }
+
+    void controlServo2(const Controller& aController) { //servo 2 movement function
+        if (aController.btnRightLeft && servo2Pos < kServo2MaxDeg) { //move servo if right up button pressed
+            servo2Pos += min(kServo2Speed, kServo2MaxDeg - servo2Pos); //update servo 2 position
+        } else if (aController.btnRightRight && servo2Pos > kServo2MinDeg) { //move servo the other way if right down button pressed
+            servo2Pos -= min(kServo2Speed, servo2Pos - kServo2MinDeg); //update servo 2 position
+        }
+        servo2.write(servo2Pos); //move servo 2
+    }
+                    </pre>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <p id="contentText" style="font-size: 1.75vw; top: 12.75vw; right: 6vw; text-align: right; width: 54.9vw;">
+                        The main thing we found that could be improved on our robot to make it more effective in completing the task was improving
+                        the robot's drivetrain. For this challenge, we settles on two wheels with added parts for grip and a front peg for our drive.
+                        Although we thought it would be sufficient for our drive, Its lack of power often led the robot to remain stuck in the thick
+                        dunes of sand that littered the field. To improve this for future attempts, it might be a good idea to either add extra motors
+                        for increased power, or implement a tank drive system that would allow us to have more control over the amount of power each side
+                        motor gets in order to avoid situations where the bot is unable to move. 
+                    </p>
+                    <img src="mechImages/roboimprov.jpg" id="contentImage" style="top: 16.5vw; left: 3vw; width: 37vw;">
+                    <h2 id="contentTitle" style="top: 8.5vw; right: 3vw;">Opportunities for Improvement</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <p id="contentText" style="font-size: 2.2vw; top: 9.5vw; left: 6vw; width: 55vw;">
+                        My main contribution to the team was handling all the programming aspects of the project. This included programming the controller
+                        inputs, the motor movement of the robot, the servo movement and sensor code among others. Not only was it my responsibility to build 
+                        the code, but also debug it, finding errors and fixing them in order to make sure the robot was up to the task we set for it. Once we 
+                        presented our challenge, I also produced the final code used on the robot, making sure it was fully commented. 
+                    </p>
+                    <img src="mechImages/prog.jpg" id="contentImage" style="top: 18vw; right: 3vw; width: 37vw;">
+                    <h2 id="contentTitle" style="top: 6vw; left: 3vw;">My Main Contribution</h2>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p id="mechFooter">© Christian's Mechatronics 25 Portfolio</p>
+        </footer>
+    </body>
+    <script src="mechScript.js"></script>
+</html>

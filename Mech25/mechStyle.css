@@ -19,7 +19,9 @@ div {
 }
 
 nav {
-    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 4%;
     background-color:#08063b;
     border: 0.25vw solid;
     position: fixed;
@@ -34,6 +36,10 @@ nav {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: transform 0.5s ease-in-out;
     transform: translateY(-100%);  /* Start hidden */
+}
+
+pre {
+    overflow: auto;
 }
 
 /* This class makes navbar visible */
@@ -73,26 +79,37 @@ footer {
 }
 
 .buttonGroup {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1vw; 
+    top: 100%;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    pointer-events: none;  /* Prevents clicking when hidden */
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform-origin: top center;
+    visibility: hidden;  /* Use visibility instead of display */
+    position: absolute;
+    z-index: 10000;
+    right: 0;
+    margin-top: 0.5vw; 
+    width: 18vw;
+    background-color:#08063b;
+    flex-direction: column;  /* ADD THIS - makes buttons stack vertically */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 0.15vw solid black;
 }
 
 .buttonGroup button {
-    display: inline-flex;
+    display: block;
     font-family: "Sheeping Cats";
     background-color:#08063b;
     border: 0.15vw solid transparent;
     color:white;
     -webkit-text-stroke: 0.5px black;
-    padding: 1.5% 2%;
-    text-align: center;
+    padding: 4% 5%;
+    width: 100%;
+    text-align: right;
     text-decoration: none;
     font-size: 1.1vw;
     cursor: pointer;
-    line-height: normal; 
-    vertical-align: middle; 
     white-space: nowrap;
     transition:background-color 0.2s;
 }
@@ -143,13 +160,95 @@ footer {
     border: 0.25vw solid black;
 }
 
-#mechTitle {
+#homeButton {
     font-family: "Sheeping Cats";
-    font-size: 1.75vw;
+    font-size: 1.5vw;
     color: white;
-    -webkit-text-stroke: 0.5px black;
-    margin-right: auto; 
+    -webkit-text-stroke: 0.5px black; 
+    background-color:#08063b;
+    border: 0.15vw solid transparent;
+    padding: 20% 22%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: normal; 
+    vertical-align: middle; 
+    transition:background-color 0.2s;
+}
+
+#homeButton:hover{
+    background-color:white;
+    -webkit-text-stroke: 0px black;
+    color:#040151;
+    border-color:black;
+}
+
+#homeButton:active{
+    background-color:#040151;
+    color:white;
+    border-color:white;
+}
+
+#mechTitle {
+    display: inline-flex;
+    justify-content: flex-end;
+    position: relative;
+    font-family: "Sheeping Cats";
+    font-size: 1.5vw;
+    color: white;
+    -webkit-text-stroke: 0.5px black; 
     white-space: nowrap;  /* Keep title on one line */
+    background-color:#08063b;
+    border: 0.15vw solid transparent;
+    padding: 6% 8%;
+    padding-right: 4%; /* Add extra padding on the right for the dropdown arrow */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: normal; 
+    vertical-align: middle; 
+    transition:background-color 0.2s;
+}
+
+#mechTitle.dropdown-active .buttonGroup {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+    visibility: visible;
+}
+
+#mechTitle:hover{
+    background-color:white;
+    -webkit-text-stroke: 0px black;
+    color:#040151;
+    border-color:black;
+}
+
+#mechTitle.dropdown-active {
+    background-color: #040151;
+    color: white;
+    border-color: white;
+}
+
+/* Dropdown arrow */
+#mechTitle::after {
+    content: "▾";
+    display: inline-flex;  /* Change to inline-flex */
+    align-items: center;   /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 1.75vw;
+    transition: transform 0.3s ease;
+    margin-left: 4px;
+    transform-origin: center center;
+    vertical-align: middle;  /* Keeps it aligned with text */
+    width: 1em;   /* Give it a fixed width */
+    height: 1em;  /* Give it a fixed height */
+    line-height: 1; /* Helps with vertical centering */
+}
+
+/* Rotate arrow when dropdown is active */
+#mechTitle.dropdown-active::after {
+    transform: rotate(180deg);  /* Flips arrow to point up */
 }
 
 #mechBanner {
@@ -226,6 +325,14 @@ footer {
     -webkit-text-stroke: 0px black;
 }
 
+#mechFooter {
+    font-family: "Sheeping Cats";
+    font-size: 1.75vw;
+    color: white;
+    -webkit-text-stroke: 0.5px black;
+    margin-right: auto; 
+    white-space: nowrap;  /* Keep title on one line */
+}
 
 @keyframes disappearAndSlideIn {
     0% {

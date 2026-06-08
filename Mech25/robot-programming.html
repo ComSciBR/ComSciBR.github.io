@@ -6,22 +6,188 @@
         <link rel="stylesheet" href="mechStyle.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     </head>
-    <body style="background-color: black;">
+    <body>
         <nav>
-            <div id="mechTitle">Mechatronics 25</div>
-            <div class="buttonGroup">
-                <button id="mechButton">Home</button>
-                <button id="disasterButton">Disaster Relief</button>
-                <button id="solderButton">Soldering</button>               
-                <button id="monitorButton">Monitoring Station</button> 
-                <button id="basicButton">Robot Programming</button>
+            <div>
+                <button id="homeButton">Home</button>
+            </div>
+            <div>
+                <div id="mechTitle">Remote Control Car
+                    <div class="buttonGroup">
+                        <button id="disasterButton">Disaster Relief</button>
+                        <button id="solderButton">Electro-Assembly</button>               
+                        <button id="monitorButton">Monitoring Station</button> 
+                        <button id="basicButton">Remote Control Car</button>
+                        <button id="roverButton">Rover Recovery Mission</button>
+                    </div>
+                </div>
             </div>
         </nav>
-        <div>
-            <h1 id="mechHeaderText">Coming Soon...</h1>
+        <div class="mechBannerDiv">
+            <img id="mechBanner" src="mechImages/mechatronic-image.png">
         </div>
+        <div class="fade-element">
+            <h1 id="mechHeaderText" style="font-size:3.9vw">Remote Control Car</h1>
+        </div>
+        <main>
+            <div class="content">
+                <div class="fade-element" id="contentDiv">
+                    <iframe src="mechImages/Remote Inforgraphic.pdf" style="position:absolute; width:88vw; height: 88%; border: 0.25vw solid black; top: 50%; left: 50%; transform: translate(-50%, -50%);" scrolling="auto"></iframe>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/progflowchart.png" id="contentImage" style="width: 33%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 3vw; left: 5vw;">Flowchart</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/progschematic.png" id="contentImage" style="width: 57.5%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 3vw; left: 3vw;">Electrical Schematic</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 54%; left: 50%; transform: translate(-50%, -50%); width: 53vw; max-height: 82%;"> 
+    const int RTrigPin = 7; // Right Ultrasonic sensor trigger
+    const int REchoPin = 4; // Right Ultrasonic sensor echo
+
+    const int LTrigPin = 9; // Ultrasonic sensor trigger
+    const int LEchoPin = 8; //Left Ultrasonic sensor echo
+
+    const int in1 = 3; // Left motor direction pin 1
+    const int in2 = 5; // Left Motor direction pin 2
+
+    const int in3 = 6; // Right Motor direction pin 1
+    const int in4 = 11; // Right Motor direction pin 2
+
+    const int obstacleDistance = 50; //detect distance for turning
+    float right_duration, right_distance, left_duration, left_distance; //variables for ultrasonic sensor function
+
+    // --- Setup ---
+    void setup() {
+        Serial.begin(9600); //initialize serial monitor at 9600 rate
+
+        pinMode(in1, OUTPUT); //left motor pin 1 initialize
+        pinMode(in2, OUTPUT); //left motor pin 2 initialize  
+        pinMode(in3, OUTPUT); //Right motor pin 1 initialize
+        pinMode(in4, OUTPUT); //Right motor pin 2 initialize
+
+        pinMode(RTrigPin, OUTPUT); //Right ultrasonic trig pin intialize
+        pinMode(REchoPin, INPUT); //Right ultrasonic echo pin initialize
+        pinMode(LTrigPin, OUTPUT); //Left ultrasonic trig pin initialize
+        pinMode(LEchoPin, INPUT);*/ //Left ultrasonic echo pin initialize
+    }
+
+    // --- Main Loop ---
+    void loop() {
+        int lDistance = getLDistance(); //get the distance from left ultrasonic sensor
+        int rDistance = getRDistance(); //get distance from right ultrasonic sensor
+
+        if (lDistance < obstacleDistance) || (rDistance < obstacleDistance){ //check if measured distance is under minimum distance threshold
+            Serial.println("detected");
+            stopMotors(); //stop movement
+            delay(300); //wait 300 ms
+            turnRight(); //turn right
+            delay(500); //wait 500 ms
+        } else {
+            moveForward(); //if above threshold, keep moving
+        }
+    }
+
+    int getRDistance() { //right ultrasonice sensor distance function
+        // Send ultrasonic pulse
+        digitalWrite(RTrigPin, LOW); //set low to ensure it starts low
+        delayMicroseconds(2); //wait 2 microseconds
+        digitalWrite(RTrigPin, HIGH); //send out pulse from sensor
+        delayMicroseconds(10); //wait 10 microseconds
+        digitalWrite(RTrigPin, LOW); //set back to low for next cycle
+
+        right_duration = pulseIn(REchoPin, HIGH); //set variable to pulse data
+        right_distance = (duration*.0343)/2; // convert to cm
+        Serial.print("Right Distance: "); //print right distance words
+        Serial.println(right_distance); //print distance
+        delay(100); //wait 100 ms
+        return right_distance; //return right distance in cm
+    }
+
+    int getRDistance() { //left ultrasonice sensor distance function
+        // Send ultrasonic pulse
+        digitalWrite(LTrigPin, LOW); //set low to ensure it starts low
+        delayMicroseconds(2); //wait 2 microseconds
+        digitalWrite(LTrigPin, HIGH); //send out pulse from sensor
+        delayMicroseconds(10); //wait 10 microseconds
+        digitalWrite(LTrigPin, LOW); //set back to low for next cycle
+
+        left_duration = pulseIn(LEchoPin, HIGH); //set variable to pulse data
+        left_distance = (duration*.0343)/2; // convert to cm
+        Serial.print("Left Distance: "); //print distance word
+        Serial.println(left_distance); //print distance
+        delay(100); //wait 100 ms
+        return left_distance; //return distance in cm
+    }
+
+    void moveForward() { //move forward function
+        digitalWrite(in1, HIGH); //left motor spin forwards
+        digitalWrite(in2, LOW); //left motor no backwards spin
+        digitalWrite(in3, HIGH); //right motor spin forwards
+        digitalWrite(in4, LOW); //right motor no backwards spin
+    }
+
+    void stopMotors() { //stop motors function
+        digitalWrite(in1, LOW); //left motor no forward spin
+        digitalWrite(in2, HIGH); //left motor backwards spin
+        digitalWrite(in3, LOW); //right motor no forward spin
+        digitalWrite(in4, HIGH); //right motor backwards spin
+    }
+
+    void turnRight() { //turn right function
+        digitalWrite(in1, HIGH); //left motor spin forwards
+        digitalWrite(in2, LOW); //left motor no backwards spin
+        digitalWrite(in3, LOW); //right motor no forward spin
+        digitalWrite(in4, HIGH); //right motor backwards spin
+    }
+                    </pre>
+                    <h2 id="contentTitle" style="top: 3vw; left: 3vw;">Commented Code</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <p id="contentText" style="font-size: 2.6vw; top: 9.5vw; left: 6vw; width: 55vw; padding-right: 3%;">
+                        Our unique addition to our robot was a custom front bumper plate with our team name on it.
+                        It served as a multifunctional piece, providing both a decorative element and a practical function 
+                        by creating a mounting platform for our ultrasonic sensors. This design choice allowed us to effectively 
+                        complete the task assigned with ease.
+                    </p>
+                    <img src="mechImages/tbbfinal.jpg" id="contentImage" style="top: 18.5vw; right: 3vw; width: 37vw;">
+                    <h2 id="contentTitle" style="top: 6vw; left: 3vw;">Final Robot Picture With Sensors</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <div id="contentText" style="font-size: 2.6vw; top: 9.75vw; left: 6vw; width: 88vw;padding-left: 4.5%;">
+                        <li>TBB Robot Base: Provides the main structure and driving base</li>
+                            <br>
+                        <li>2x Ultrasonic Sensors: Detects obstacles through ultrasonic pulses</li>
+                            <br>
+                        <li>DC Motors: Powers the wheels for robot movement</li>
+                            <br>
+                        <li>Battery Back: Provides power for the entire system</li>
+                            <br>
+                        <li>Connecting Wires and Breadboard: Used to manage the wiring for the robot's movement and sensors</li>
+                    </div>
+                    <h2 id="contentTitle" style="top: 3.75vw; left: 3vw;">Components Used</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <p id="contentText" style="font-size: 2.75vw; top: 6.75vw; left: 6vw; width: 88vw;">
+                        One thing that could be improved with out robot is the consistency of our ultrasonic sensor readings. 
+                        We found that our sensors would often give us inconsistent distance readings, which made it difficult 
+                        to program the robot to react to obstacles in a consistent way. This could be improved by refining
+                        the values used for coding our sensors to ensure more consistent readings. We would also like to fine tune the
+                        movement of our robot wheneverit detects an obstacle to make it perfectly sure that it does not hit a wall 
+                        under any circumstance. This would make our attempts more consistent with a smaller risk of failure by taking
+                        better, smoother turns. 
+                    </p>
+                    <h2 id="contentTitle" style="top: 3.75vw; left: 3vw;">Reflection and Observations</h2>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p id="mechFooter">© Christian's Mechatronics 25 Portfolio</p>
+        </footer>
     </body>
     <script src="mechScript.js"></script>
 </html>

@@ -6,22 +6,131 @@
         <link rel="stylesheet" href="mechStyle.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     </head>
-    <body style="background-color: black;">
+    <body>
         <nav>
-            <div id="mechTitle">Mechatronics 25</div>
-            <div class="buttonGroup">
-                <button id="mechButton">Home</button>
-                <button id="disasterButton">Disaster Relief</button>
-                <button id="solderButton">Soldering</button>               
-                <button id="monitorButton">Monitoring Station</button> 
-                <button id="basicButton">Robot Programming</button>
+            <div>
+                <button id="homeButton">Home</button>
+            </div>
+            <div>
+                <div id="mechTitle">Monitoring Station
+                    <div class="buttonGroup">
+                        <button id="disasterButton">Disaster Relief</button>
+                        <button id="solderButton">Electro-Assembly</button>               
+                        <button id="monitorButton">Monitoring Station</button> 
+                        <button id="basicButton">Remote Control Car</button>
+                        <button id="roverButton">Rover Recovery Mission</button>
+                    </div>
+                </div>
             </div>
         </nav>
-        <div>
-            <h1 id="mechHeaderText">Coming Soon...</h1>
+        <div class="mechBannerDiv">
+            <img id="mechBanner" src="mechImages/mechatronic-image.png">
         </div>
+        <div class="fade-element">
+            <h1 id="mechHeaderText" style="font-size:4.2vw">Monitoring Station</h1>
+        </div>
+        <main>
+            <div class="content">
+                <div class="fade-element" id="contentDiv">
+                    <div class="iframeDiv">
+                        <iframe src="https://stemyyc-my.sharepoint.com/personal/thomasa613_stemia_ca/_layouts/15/Doc.aspx?sourcedoc={47757b75-b369-4ae7-b956-2d1ef9c24c79}&amp;action=embedview&amp;wdAr=1.3333333333333333" frameborder="0" title="PowerPoint Viewer">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+                    </div>
+                    <h2 id="contentTitle" style="top: 3vw; left: 3vw;">PowerPoint Presentation</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/Start-1.png" id="contentImage" style="width: 33%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 3vw; left: 5vw;">Flowchart</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <img src="mechImages/monitorschematic.png" id="contentImage" style="width: 57.5%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <h2 id="contentTitle" style="top: 3vw; left: 3vw;">Electrical Schematic</h2>
+                </div>
+                <div class="fade-element" id="contentDiv">
+                    <pre id="contentText" style="font-size: 1vw; top: 54%; left: 50%; transform: translate(-50%, -50%); width: 53vw; max-height: 82%;"> 
+    #include <Servo.h> //library for servo motors
+    #include <math.h> //math library for temperature
+
+    const int flamePin = 2; // the number of the flame pin
+    const int ledPin = 13; // the number of the LED pin
+    const int redled = 5; // initialize digital pin 5.
+    const int yellowled = 4; // initialize digital pin 4.
+    const int greenled = 3; // initialize digital pin 3.
+    const int buzzer = 7;//set digital IO pin of the buzzer
+    const int servoPin = 9;// select digital pin 9 for servomotor signal line
+    const int servoPin2 = 10;// select digital pin 9 for servomotor signal line
+    const int STOP_SPEED = 90; //Stop speed
+    const int CW_SPEED   = 120; // Adjust for desired speed (91–180)
+    const int CCW_SPEED  = 60;  // Adjust for desired speed (0–89)
+    // variables will change:  
+    int State = 0; // variable for reading status
+
+    Servo myServo; //left servo
+    Servo my2servo; //right servo
+
+    void setup() { //setup function
+        myServo.attach(servoPin); // Attach servo to pin
+        my2servo.attach(servoPin2); // Attach second servo to pin
+        myServo.write(STOP_SPEED); // Ensure servo is stopped at start
+        pinMode(ledPin, OUTPUT); //initialize the LED pin as an output:      
+        pinMode(flamePin, INPUT); //initialize the pushbutton pin as an input:
+        pinMode(redled, OUTPUT);// set the pin with red LED as “output”
+        pinMode(yellowled, OUTPUT); // set the pin with yellow LED as “output”
+        pinMode(greenled, OUTPUT); // set the pin with green LED as “output”
+        pinMode(buzzer, OUTPUT);// set digital IO pin pattern, OUTPUT to be output
+        Serial.begin(9600); //Begin printing to the serial monitor
+    }
+
+    void loop(){ //loop function
+        double val=analogRead(4); //Raw temperature reading variable
+        double fenya=(val/1023)*5; //first conversion
+        double r=(5-fenya)/fenya*4700; //second conversion
+        double dat= 1/(log(r/10000) /3950 + 1/(25+273.15))-273.15; //Readable temperature reading variable
+
+        State = digitalRead(flamePin); //Read the state of the value:
+
+        if (State == LOW) { //Statement that checks if there is fire
+            myServo.write(STOP_SPEED); //make the first servo stop
+            my2servo.write(STOP_SPEED); //make the other servo stop
+            digitalWrite(yellowled, LOW); //turn off yellow led
+            digitalWrite(greenled, LOW); //turn off green led
+            digitalWrite(redled, HIGH); //turn on red led
+            tone(buzzer, 1000); //activate buzzer
+            Serial.println("FIRE"); //Prints fire statement to serial monitor
+        }  
+
+        else { //Runs if no fire is detected
+            digitalWrite(redled, LOW); //turn off red led
+            noTone(buzzer); //deactivate buzzer
+            if (dat >= 27){ //runs if temperature is high
+                digitalWrite(greenled, LOW); //turn off green led
+                digitalWrite(yellowled, HIGH); //turn on yellow led
+                Serial.println("WARNING: High Temperatures Detected!"); //Prints no fire statement to serial monitor
+            }
+            else { //runs if nothing happens
+                myServo.write(CW_SPEED); //move servo
+                my2servo.write(-CW_SPEED); //move second servo
+                digitalWrite(yellowled, LOW); //turn off yellow led
+                digitalWrite(greenled, HIGH); //turn on green led
+                Serial.println("No Fire"); //Prints no fire statement to serial monitor
+            }
+        }
+    
+    Serial.println(dat); //Prints temperature value to serial monitor
+    delay(500); //delay for serial monitor readability
+
+    }
+
+    ////////////////////////////////////////////////////////////////////
+                    </pre>
+                    <h2 id="contentTitle" style="top: 3vw; left: 3vw;">Commented Code</h2>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p id="mechFooter">© Christian's Mechatronics 25 Portfolio</p>
+        </footer>
     </body>
     <script src="mechScript.js"></script>
 </html>
